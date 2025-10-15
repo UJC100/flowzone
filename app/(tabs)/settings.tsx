@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         gap: 10,
         alignItems: "center",
-        backgroundColor: "red",
-        backdropFilter: ""
+        backgroundColor: "red"
       },
       content: {
         fontSize: 22

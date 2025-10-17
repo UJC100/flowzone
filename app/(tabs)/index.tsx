@@ -19,8 +19,12 @@ export default function Index() {
   const homeStyles = createHomeStyles(colors);
 
  
+  const todos = useQuery(api.todos.getTodos);
 
-  // const addTodo = useMutation(api.todos.addTodo);
+  const isLoading = todos === undefined
+
+  // if (isLoading) return <LoadingSpinner/>
+
   // const clearAllTodos = useMutation(api.todos.clearAllTodos)
 
   return (
@@ -32,9 +36,9 @@ export default function Index() {
       <SafeAreaView style={homeStyles.safeArea}>
         <Header />
         <TodoInput/>
-        <TouchableOpacity onPress={toggleDarkMode}>
-          <Text>Toggle the mode</Text>
-        </TouchableOpacity>
+        {todos?.map(todo => {
+        return  <Text key={todo._id}>{todo.text}</Text>
+        })}
       </SafeAreaView>
     </LinearGradient>
   );

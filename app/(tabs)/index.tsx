@@ -111,7 +111,7 @@ export default function Index() {
             <View style={homeStyles.editContainer}>
               <TextInput
                 style={homeStyles.editInput}
-                placeholder="Edit your todo..."
+                placeholder="Edit you todo..."
                 value={editText}
                 onChangeText={setEditText}
                 placeholderTextColor={colors.textMuted}

@@ -1,26 +1,45 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView } from "react-native";
+import useTheme from "@/hooks/useTheme";
+import { createSettingsStyles } from "@/assets/styles/settings.styles";
+import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import ProgressStats from "@/components/ProgressStats";
 
 const SettingsScreen = () => {
+  
+  const { colors } = useTheme();
+
+  const SettingsStyles = createSettingsStyles(colors);
   return (
-    <View>
-      <Text style={styles.constainer}>Settings</Text>
-    </View>
-  )
-}
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={SettingsStyles.container}
+    >
+      <SafeAreaView style={SettingsStyles.safeArea}>
+        <View style={SettingsStyles.header}>
+          <View style={SettingsStyles.titleContainer}>
+            <LinearGradient
+              style={SettingsStyles.iconContainer}
+              colors={colors.gradients.primary}
+            >
+              <Ionicons name="settings" size={28} color={"#fff"} />
+            </LinearGradient>
+            <Text style={SettingsStyles.title}>Settings</Text>
+          </View>
+        </View>
 
-export default SettingsScreen
+        <ScrollView style={SettingsStyles.scrollView}
+        contentContainerStyle={SettingsStyles.content}
+        showsVerticalScrollIndicator={false}
+        >
+          <ProgressStats/>
 
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
+  );
+};
 
-const styles = StyleSheet.create({
-  constainer: {
-        flex: 1,
-        justifyContent: "center",
-        gap: 10,
-        alignItems: "center",
-        backgroundColor: "red"
-      },
-      content: {
-        fontSize: 22
-      }
-})
+export default SettingsScreen;
+
